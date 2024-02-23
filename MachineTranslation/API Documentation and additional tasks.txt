@@ -1,0 +1,55 @@
+Description:
+This endpoint allows user to submit a translation request and receive translated content. The request will be
+validated before sending to translate. Error will be returned if validation fails.
+
+API Documentation:
+
+Request:
+Method: POST
+Endpoint: /transperfect-api/validate
+Request Body: JSON object which represent translation request (sourceLanguage, targetLanguage, domain, content)
+
+Request example (json):
+{
+	"sourceLanguage": "en-US",
+	"targetLanguage": "de-DE",
+	"domain": "general",
+	"content": "Hello TransPerfect"
+}
+
+Response:
+Success: HTTP Status '200 OK'
+
+Success example (json):
+{
+	"translatedContent": "Hallo TransPerfect"
+}
+
+Error: HTTP Status '400 Bad Request'
+
+Error example if language is not supported(json):
+
+{
+	error: "Unsupported language!"
+}
+
+
+Changed and additional tasks needed to be production ready:
+
+Testing:
+Upload code on test environment, check the performance and do end-to-end testing to 
+ensure that everything works as expected in simulated production environment.
+
+Security:
+Securing API endpoints.
+Make sure that only autorized users can access the system.
+
+We should make sure that Machine Translation Service API is always available and
+make changes for what to do if it is not. (Make some default values, handle errors...)
+
+Documentation:
+I would use Springdoc OpenAPI for API documentation.
+We should include detailed instructions for developers and users.
+
+Monitoring:
+Implement tools for monitoring application performance.
